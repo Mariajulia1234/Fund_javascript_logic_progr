@@ -1,0 +1,137 @@
+<!-- 
+ "Vamos criar um site de uma lampada que liga, desliga e quebra"
+ -->
+
+<!DOCTYPE html>
+ <html lang="pt-br">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maju Light Buld </title>
+    <link rel="shortcut icon" href="/img/favicon3.png" type="image/x-icon">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+
+    <style>
+      /*Serve para criar a estilização da pagina */
+       :root {
+           --eu-kauan:blue;
+           --ari:pink;
+           --enzo:red;
+        }
+            
+    /* centraliza o conteudo */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            
+        }
+       
+         
+        #lamp{
+            width: 300px;
+        }
+     /* Cor de fundo(background color) */
+        body{
+            background: var(--enzo);
+            background-image:linear-gradient(to top, 
+            var(--enzo), var(--eu-kauan));
+            background-attachment: fixed;
+        }
+
+   /* centralizar */
+        header,
+        section{
+        display: flex;
+         flex-direction: column;
+        align-items: center;
+        }
+
+     /* Tamanho do botão */
+        button{
+         width: 100px;
+         height: 60px;
+        }
+        
+    </style>
+    
+</head>
+
+ <body>
+    <header>
+
+        <h1>Lâmpada</h1>
+    </header>
+    <section>
+       
+     <div>
+            <img src="./lamp_off.jpeg"
+                alt="Lâmpada Off" id="lamp">
+        </div>
+
+    <div>
+       <button id='turnOn'>Ligar</button>
+       <button id='turnOff'>Desligar</button>
+        </div>
+       
+    </section>
+    
+ </body>
+
+ <script> 
+
+// variáveis
+    const turnOn = document.getElementById('turnOn');
+    const turnOff = document.getElementById('turnOff');
+    const lamp = document.getElementById('lamp');
+
+
+// retornar para a imagem da lâmpada quebrada
+    function isLampBroken(){
+        // CORRIGIDO: Troquei 'quebrada' por 'broke', que é o nome do seu arquivo.
+        return lamp.src.indexOf('broke') > -1
+    }
+
+
+// só acende se não estiver quebrada
+    function lampOn() {
+        if (!isLampBroken()) {
+            // CORRIGIDO: Removido o "./img/"
+            lamp.src = './lamp_on.jpeg';
+        }
+    }
+
+
+// lâmpada desligar quando quebrada
+    function lampOff() {
+        if (!isLampBroken()) {
+            // CORRIGIDO: Removido o "./img/"
+            lamp.src = './lamp_off.jpeg';
+        }
+    }
+
+
+// função para quebrar a lâmpada
+    function lampBroken() {
+        // CORRIGIDO: Removido o "./img/"
+        lamp.src = './lamp_broke.jpeg';
+    }
+
+    
+
+  // interação, clilcar para lâmpada acender, apagar e quebrar
+    turnOn.addEventListener('click', lampOn);   
+    turnOff.addEventListener('click', lampOff);
+    
+    // Adicionei uma condição para o mouseover/mouseleave
+    lamp.addEventListener('mouseover', lampOn);
+    lamp.addEventListener('mouseleave', lampOff);
+    
+    lamp.addEventListener('dblclick', lampBroken);
+
+
+    
+ </script>
+
+ </html>
